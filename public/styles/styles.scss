@@ -1,0 +1,34 @@
+$colors: (
+    "primary": #00BFA5,
+    "secondary": #E61236,
+    "text-color": #37474F,
+    "grey-one": #757575,
+    "grey-border": #D4D4D4
+);
+
+@each $name, $value in $colors {
+    .bg-#{$name} {
+        background-color: $value;
+    }
+    .color-#{$name} {
+        color: $value;
+    }
+    .border-#{$name} {
+        border-color: $value;
+    }
+}
+
+$font_weights: (400, 500, 700);
+
+@each $weight in $font_weights {
+    @font-face {
+        font-family: "Vazir";
+        src: url("/fonts/Vazir/Vazir-#{$weight}.ttf") format("truetype");
+        font-weight: #{$weight};
+        font-style: normal;
+    }
+}
+
+html {
+    font-family: "Vazir";
+}

@@ -14,7 +14,6 @@
     watch(value, (newValue) => {
         try {
             isCorrect.value = new RegExp(props.regex).test(toEnglishNumbers(newValue));
-            console.log(isCorrect.value);
         } catch (e) {
             console.error("Invalid regex:", e);
             isCorrect.value = false;

@@ -11,7 +11,7 @@
 <template dir="rtl">
   <BaseLayout>
     <template #nav>
-      <router-link v-for="(title, route) in routes" :to="route"
+      <router-link v-for="(title, route) in routes" :to="route" :key="title"
       class="text-decoration-none text-text-color fw-semibold">
         {{ title }}
       </router-link>

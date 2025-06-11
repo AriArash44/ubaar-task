@@ -1,1 +1,2 @@
-<template>b</template>
+<template>
+</template>

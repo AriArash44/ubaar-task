@@ -2,8 +2,24 @@
   background-color: #00BFA5 !important;
 }
 
+.border-primary-green {
+  border-color: #00BFA5 !important;
+}
+
+.text-secondary-red {
+  color: #E61236 !important;
+}
+
+.border-secondary-red {
+  border-color: #E61236 !important;
+}
+
 .text-text-color {
   color: #37474F !important;
+}
+
+.border-grey-border {
+  border-color: #D4D4D4 !important;
 }
 
 .bg-grey-background {
@@ -45,6 +61,22 @@
   padding-left: 48px;
 }
 
+.t-3px {
+  top: 3px;
+}
+
+.l-3px {
+  left: 3px;
+}
+
 html {
   font-family: "Vazir";
+}
+
+input:focus {
+  outline: none;
+}
+
+.border-solid {
+  border-style: solid;
 }

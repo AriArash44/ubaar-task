@@ -52,7 +52,11 @@ $utilities: (
     'fs': "font-size",
     'br': "border-radius",
     'h': "height",
-    'gap': "gap"
+    'gap': "gap",
+    "t": "top",
+    "b": "bottom",
+    "l": "left",
+    "r": "right"
 );
 
 @mixin generate-utilities($utilities, $values) {
@@ -69,4 +73,12 @@ $utilities: (
 
 html {
     font-family: "Vazir";
+}
+
+input:focus {
+    outline: none;
+}
+
+.border-solid {
+    border-style: solid;
 }

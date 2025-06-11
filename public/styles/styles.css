@@ -1,3 +1,23 @@
+.bg-primary-green {
+  background-color: #00BFA5 !important;
+}
+
+.text-text-color {
+  color: #37474F !important;
+}
+
+.bg-grey-background {
+  background-color: #F5F5F5 !important;
+}
+
+.bg-white {
+  background-color: #FFFFFF !important;
+}
+
+.text-white {
+  color: #FFFFFF !important;
+}
+
 @font-face {
   font-family: "Vazir";
   src: url("/fonts/Vazir/Vazir-400.ttf") format("truetype");
@@ -16,6 +36,15 @@
   font-weight: 700;
   font-style: normal;
 }
+
+.pr-48px {
+  padding-right: 48px;
+}
+
+.pl-48px {
+  padding-left: 48px;
+}
+
 html {
   font-family: "Vazir";
 }

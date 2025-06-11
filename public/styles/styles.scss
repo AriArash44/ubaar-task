@@ -1,20 +1,24 @@
+@use "sass:list";
+
 $colors: (
-    "primary": #00BFA5,
-    "secondary": #E61236,
+    "primary-green": #00BFA5,
+    "secondary-red": #E61236,
     "text-color": #37474F,
     "grey-one": #757575,
-    "grey-border": #D4D4D4
+    "grey-border": #D4D4D4,
+    "grey-background": #F5F5F5,
+    "white": #FFFFFF
 );
 
 @each $name, $value in $colors {
     .bg-#{$name} {
-        background-color: $value;
+        background-color: $value !important;
     }
-    .color-#{$name} {
-        color: $value;
+    .text-#{$name} {
+        color: $value !important;
     }
     .border-#{$name} {
-        border-color: $value;
+        border-color: $value !important;
     }
 }
 
@@ -28,6 +32,40 @@ $font_weights: (400, 500, 700);
         font-style: normal;
     }
 }
+
+$spacing_sizes: ();
+@for $i from 0 through 48 {
+    $spacing_sizes: list.append($spacing_sizes, #{$i}px);
+}
+
+$utilities: (
+    'p': "padding",
+    'pt': "padding-top",
+    'pr': "padding-right",
+    'pb': "padding-bottom",
+    'pl': "padding-left",
+    'm': "margin",
+    'mt': "margin-top",
+    'mr': "margin-right",
+    'mb': "margin-bottom",
+    'ml': "margin-left",
+    'fs': "font-size",
+    'br': "border-radius",
+    'h': "height",
+    'gap': "gap"
+);
+
+@mixin generate-utilities($utilities, $values) {
+    @each $abbr, $property in $utilities {
+        @each $value in $values {
+            .#{$abbr}-#{$value} {
+                #{$property}: $value;
+            }
+        }
+    }
+}
+
+@include generate-utilities($utilities, $spacing-sizes);
 
 html {
     font-family: "Vazir";

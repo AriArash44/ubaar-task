@@ -73,6 +73,14 @@
   left: 3px;
 }
 
+.w-95 {
+  width: 95%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
 html {
   font-family: "Vazir";
 }

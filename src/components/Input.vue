@@ -5,7 +5,8 @@
         title: String,
         regex: String,
         data: String,
-        error: String
+        error: String,
+        onlyNumeric: { type: Boolean, default: false }
     });
     const emit = defineEmits(['update:data'])
     const inputId = useId();
@@ -27,14 +28,16 @@
 </script>
 
 <template>
-  <label :for="inputId">{{ title }}</label>
-  <div class="position-relative">
-    <input :id="inputId" type="text" v-model="value" @input="value=toPersianNumbers(value);
-    emit('update:data', toEnglishNumbers(value));" :class="['w-100 p-1 border-solid rounded-1', inputClass]" />
-    <button v-if="value" type="button" @click="value = ''"
-    class="position-absolute t-3px l-3px bg-white border-0">
-      <img src="/images/close.svg" alt="Clear input" />
-    </button>
+  <div>
+    <label :for="inputId" class="d-block">{{ title }}</label>
+    <div class="position-relative">
+      <input :id="inputId" type="text" v-model="value" @input="if(onlyNumeric) value=value.replace(/[^۰-۹0-9]/g, ''); value=toPersianNumbers(value); 
+      emit('update:data', toEnglishNumbers(value));" :class="['w-100 p-1 border-solid rounded-1', inputClass]" />
+      <button v-if="value" type="button" @click="value = ''"
+      class="position-absolute t-3px l-3px bg-white border-0">
+        <img src="/images/close.svg" alt="Clear input" />
+      </button>
+    </div>
+    <p v-if="value && !isCorrect" class="text-secondary-red">{{ error }}</p>
   </div>
-  <p v-if="value && !isCorrect" class="text-secondary-red">{{ error }}</p>
 </template>

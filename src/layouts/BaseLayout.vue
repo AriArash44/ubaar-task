@@ -6,7 +6,7 @@
       <slot name="nav"></slot>
     </nav>
   </header>
-  <main>
+  <main class="d-flex justify-content-center align-items-center">
     <slot name="main"></slot>
   </main>
 </template>

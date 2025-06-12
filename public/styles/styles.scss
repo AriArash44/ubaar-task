@@ -59,9 +59,9 @@ $utilities: (
     "r": "right"
 );
 
-@mixin generate-utilities($utilities, $values) {
+@mixin generate-utilities($utilities, $spacing_sizes) {
     @each $abbr, $property in $utilities {
-        @each $value in $values {
+        @each $value in $spacing_sizes {
             .#{$abbr}-#{$value} {
                 #{$property}: $value;
             }
@@ -70,6 +70,28 @@ $utilities: (
 }
 
 @include generate-utilities($utilities, $spacing-sizes);
+
+$box_sizes: ();
+@for $i from 0 through 100 {
+    $box_sizes: list.append($box_sizes, #{$i});
+}
+
+$box_utilities: (
+    'w': "width",
+    'h': "height"
+);
+
+@mixin generate-utilities($box_utilities, $box_sizes) {
+    @each $abbr, $property in $box_utilities {
+        @each $value in $box_sizes {
+            .#{$abbr}-#{$value} {
+                #{$property}: $value+"%";
+            }
+        }
+    }
+}
+
+@include generate-utilities($box_utilities, $box_sizes);
 
 html {
     font-family: "Vazir";

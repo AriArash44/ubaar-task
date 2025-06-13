@@ -1,6 +1,6 @@
 import { ref, watchEffect } from 'vue'
 
-export function useFetch(url, options = {}) {
+export function useFetch(url) {
     const data = ref(null);
     const error = ref(null);
     const loading = ref(false);
@@ -8,11 +8,9 @@ export function useFetch(url, options = {}) {
         loading.value = true;
         try {
             const response = await fetch(url, {
-                ...options,
                 headers: {
                     'Authorization': `Basic ${import.meta.env.VITE_API_KEY}`,
                     'Content-Type': 'application/json',
-                    ...options.headers
                 }
             })
             if (!response.ok) throw new Error(`Error: ${response.statusText}`)

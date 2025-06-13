@@ -53,11 +53,12 @@ $utilities: (
     'fs': "font-size",
     'br': "border-radius",
     'h': "height",
+    'w': "weight",
     'gap': "gap",
-    "t": "top",
-    "b": "bottom",
-    "l": "left",
-    "r": "right"
+    't': "top",
+    'b': "bottom",
+    'l': "left",
+    'r': "right"
 );
 
 @mixin generate-utilities($utilities, $spacing_sizes) {

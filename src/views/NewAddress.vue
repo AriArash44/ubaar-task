@@ -1,7 +1,8 @@
 <script setup>
     import { ref, reactive } from 'vue';
     import Input from '../components/Input.vue';
-    import Card from '../components/Card.vue'
+    import Card from '../components/Card.vue';
+    import Map from '../components/Map.vue';
     const step = ref(1);
     const formData = reactive({
         "first-name": "",
@@ -19,8 +20,8 @@
 </script>
 
 <template>
-  <Card title="ثبت آدرس">
-    <form v-if="step===1" class="p-4">
+  <Card v-if="step===2" title="ثبت آدرس">
+    <form class="p-4">
       <div class="d-flex justify-content-around flex-wrap">
         <Input class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32" title="نام" type="text" regex="^.{2,}$" error="نام باید شامل 2 کاراکتز باشد"
         @update:data="$event => (formData['first-name'] = $event)" placeholder="مثال: محمدرضا" v-model="isValidInputs[0]"/>
@@ -50,5 +51,8 @@
         </div>
       </Teleport>
     </form>
+  </Card>
+  <Card v-if="step === 1">
+    <Map></Map>
   </Card>
 </template>

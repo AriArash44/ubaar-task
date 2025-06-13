@@ -22,7 +22,7 @@
         console.log(isValidInputs);
         return isValidInputs.reduce((res, current) => res && current, true) && formData["gender"]; 
     }
-    const { responseData, error, loading, postData } = usePost("https://stage.achareh.ir/api/karfarmas/address");
+    const { responseData, error, loading, postData } = usePost(`${import.meta.env.VITE_BASE_URL}api/karfarmas/address`);
     const sendAddress = async() => {
         await postData({
             "first_name": formData['first-name'],

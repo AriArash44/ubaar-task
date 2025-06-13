@@ -10,7 +10,7 @@ export function useFetch(url, options = {}) {
             const response = await fetch(url, {
                 ...options,
                 headers: {
-                    'Authorization': 'Basic MDk4MjIyMjIyMjI6U2FuYTEyMzQ1Njc4',
+                    'Authorization': `Basic ${import.meta.env.VITE_API_KEY}`,
                     'Content-Type': 'application/json',
                     ...options.headers
                 }

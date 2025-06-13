@@ -11,7 +11,7 @@ export function usePost(url) {
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Basic MDk4MjIyMjIyMjI6U2FuYTEyMzQ1Njc4',
+                    'Authorization': `Basic ${import.meta.env.VITE_API_KEY}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(payload),

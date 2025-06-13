@@ -4,7 +4,7 @@
     import { useFetch } from "@/composables/useFetch";
     import { toPersianNumbers } from '../utils/enfanum';
     const width = ref(window.innerWidth);
-    const { data, error, loading, fetchData } = useFetch("https://stage.achareh.ir/api/karfarmas/address");
+    const { data, error, loading, fetchData } = useFetch(`${import.meta.env.VITE_BASE_URL}karfarmas/address`);
     onMounted(async() => {
         await fetchData();
     });

@@ -3,8 +3,8 @@
     import Input from '../components/Input.vue';
     import Card from '../components/Card.vue';
     import Map from '../components/Map.vue';
+    import { usePost } from '@/composables/usePost';
     const step = ref(1);
-    const loading = ref(false);
     const formData = reactive({
         "first-name": "",
         "last-name": "",
@@ -22,16 +22,28 @@
         console.log(isValidInputs);
         return isValidInputs.reduce((res, current) => res && current, true) && formData["gender"]; 
     }
-    const sendAddress = () => {
-        loading.value = true;
+    const { responseData, error, loading, postData } = usePost("https://stage.achareh.ir/api/karfarmas/address");
+    const sendAddress = async() => {
+        await postData({
+            "first_name": formData['first-name'],
+            "last_name": formData['last-name'],
+            "coordinate_mobile": formData['mobile-phone'],
+            "coordinate_phone_number": formData['tel-phone'],
+            "address": formData.address,
+            "region": '1',
+            "lat": position.lat,
+            "lng": position.long,
+            "gender": formData.gender
+        });
+        step.value++;
     };
 </script>
 
 <template>
-  <Card v-if="step===2" title="ثبت آدرس">
+  <Card v-if="step===1" title="ثبت آدرس">
     <form class="p-4">
       <div class="d-flex justify-content-around flex-wrap">
-        <Input class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32" title="نام" type="text" regex="^.{2,}$" error="نام باید شامل 2 کاراکتز باشد"
+        <Input class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32" title="نام" type="text" regex="^.{2,}$" error="نام باید شامل 2 کاراکتر باشد"
         @update:data="$event => (formData['first-name'] = $event)" placeholder="مثال: محمدرضا" v-model="isValidInputs[0]"/>
         <Input class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32" title="نام خانوادگی" type="text" regex="^.{3,}$" error="نام خانوادگی باید شامل 3 کاراکتر باشد"
         @update:data="$event => (formData['last-name'] = $event)" placeholder="مثال: رضایی" v-model="isValidInputs[1]"/>
@@ -60,7 +72,12 @@
       </Teleport>
     </form>
   </Card>
-  <Card v-if="step === 1">
+  <div v-if="step === 2" class="d-flex justify-content-start" @click="step--">
+    <button class="bg-transparent border-0">&#x2192;</button>
+    <p>انتخاب آدرس</p>
+  </div>
+  <Card v-if="step === 2">
+    <p class="position-absolu"></p>
     <Map v-model="position" />
     <Teleport to="body">
       <div class="position-absolute bottom-0 bg-white w-100
@@ -73,4 +90,25 @@
       </div>
     </Teleport>
   </Card>
+  <Card v-if="step === 3">
+    <Teleport to="body">
+      <div class="position-absolute bottom-0 bg-white w-100
+      d-flex justify-content-center p-3">
+        <button @click.prevent="sendAddress()" class="bg-primary-green border-0 pr-48px pl-48px py-1
+        cursor-pointer text-white rounded" type="sumbit">
+          <div v-if="loading" class="loader"></div>
+          <span v-else>ثبت و ادامه</span>
+        </button>
+      </div>
+    </Teleport>
+  </Card>
+  <div v-if="step===3" class="w-100 h-85 d-flex flex-column justify-content-center align-items-center">
+    <img src="/images/success.svg" alt="success"/>
+    <p>اطلاعات شما با موفقیت ثبت شد</p>
+    <router-link to="/view-addresses">
+      <button class="border-primary-green w-100 text-center text-primary-green p-8px pr-48px pl-48px rounded-2">
+        مشاهده اطلاعات
+      </button>
+    </router-link>
+  </div>
 </template>

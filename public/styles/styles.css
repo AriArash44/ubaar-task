@@ -57,6 +57,10 @@
   font-style: normal;
 }
 
+.p-8px {
+  padding: 8px;
+}
+
 .pr-48px {
   padding-right: 48px;
 }
@@ -100,6 +104,9 @@
   .w-xl-32 {
     width: 32% !important;
   }
+}
+.w-35 {
+  width: 35%;
 }
 @media (min-width: 1200px) {
   .w-xl-65 {

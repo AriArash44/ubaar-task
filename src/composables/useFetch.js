@@ -1,13 +1,32 @@
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 
-export function useFetch(url) {
-    const data = ref(null)
-    const error = ref(null)
+export function useFetch(url, options = {}) {
+    const data = ref(null);
+    const error = ref(null);
+    const loading = ref(false);
+    const fetchData = async () => {
+        loading.value = true;
+        try {
+            const response = await fetch(url, {
+                ...options,
+                headers: {
+                    'Authorization': 'Basic MDk4MjIyMjIyMjI6U2FuYTEyMzQ1Njc4',
+                    'Content-Type': 'application/json',
+                    ...options.headers
+                }
+            })
+            if (!response.ok) throw new Error(`Error: ${response.statusText}`)
+            data.value = await response.json()
+        } catch (err) {
+            error.value = err.message
+        } finally {
+            loading.value = false
+        }
+    }
 
-    fetch(url)
-        .then((res) => res.json())
-        .then((json) => (data.value = json))
-        .catch((err) => (error.value = err))
+    watchEffect(() => {
+        fetchData()
+    })
 
-    return { data, error }
+    return { data, error, loading, fetchData }
 }

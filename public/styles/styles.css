@@ -22,6 +22,10 @@
   color: #37474F !important;
 }
 
+.text-grey-one {
+  color: #757575 !important;
+}
+
 .border-grey-border {
   border-color: #D4D4D4 !important;
 }
@@ -105,9 +109,6 @@
     width: 32% !important;
   }
 }
-.w-35 {
-  width: 35%;
-}
 @media (min-width: 1200px) {
   .w-xl-65 {
     width: 65% !important;
@@ -155,6 +156,9 @@
 }
 .w-100 {
   width: 100%;
+}
+.h-80 {
+  height: 80%;
 }
 .h-85 {
   height: 85%;

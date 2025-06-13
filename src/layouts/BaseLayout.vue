@@ -6,7 +6,8 @@
       <slot name="nav"></slot>
     </nav>
   </header>
-  <main class="d-flex flex-column justify-content-center align-items-center h-85">
+  <main class="d-flex flex-column justify-content-center align-items-center 
+  h-80 overflow-y-scroll overflow-x-hidden mt-4 position-relative">
     <slot name="main"></slot>
   </main>
 </template>

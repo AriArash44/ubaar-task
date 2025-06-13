@@ -163,3 +163,28 @@ input:focus {
 .border-solid {
   border-style: solid;
 }
+
+.loader {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 32px 0 #fff, -32px 0 #fff;
+  position: relative;
+  animation: flash 0.5s ease-out infinite alternate;
+}
+
+@keyframes flash {
+  0% {
+    background-color: rgba(255, 255, 255, 0.1333333333);
+    box-shadow: 32px 0 rgba(255, 255, 255, 0.1333333333), -32px 0 #FFF;
+  }
+  50% {
+    background-color: #FFF;
+    box-shadow: 32px 0 rgba(255, 255, 255, 0.1333333333), -32px 0 rgba(255, 255, 255, 0.1333333333);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.1333333333);
+    box-shadow: 32px 0 #FFF, -32px 0 rgba(255, 255, 255, 0.1333333333);
+  }
+}

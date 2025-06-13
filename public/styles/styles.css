@@ -65,6 +65,14 @@
   padding-left: 48px;
 }
 
+.mr-10px {
+  margin-right: 10px;
+}
+
+.ml-30px {
+  margin-left: 30px;
+}
+
 .t-3px {
   top: 3px;
 }
@@ -73,14 +81,77 @@
   left: 3px;
 }
 
+@media (min-width: 576px) and (max-width: 767px) {
+  .w-sm-32 {
+    width: 32% !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .w-md-32 {
+    width: 32% !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .w-lg-32 {
+    width: 32% !important;
+  }
+}
+@media (min-width: 1200px) {
+  .w-xl-32 {
+    width: 32% !important;
+  }
+}
+@media (min-width: 1200px) {
+  .w-xl-65 {
+    width: 65% !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .w-sm-66 {
+    width: 66% !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .w-md-66 {
+    width: 66% !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .w-lg-66 {
+    width: 66% !important;
+  }
+}
+@media (min-width: 1200px) {
+  .w-xl-66 {
+    width: 66% !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .w-lg-70 {
+    width: 70% !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .w-sm-75 {
+    width: 75% !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .w-md-75 {
+    width: 75% !important;
+  }
+}
 .w-95 {
   width: 95%;
 }
-
 .w-100 {
   width: 100%;
 }
-
+.h-85 {
+  height: 85%;
+}
 html {
   font-family: "Vazir";
 }

@@ -27,12 +27,12 @@ A visual overview of the component in different viewport states:
 
 | Mobile — View                                   | Mobile — New                                    |
 |-------------------------------------------------------|--------------------------------------------------------|
-| ![Mobile View](./frontend/public/images/view-mobile.png) | ![Mobile New](./frontend/public/images/new-mobile.png)     |
+| ![Mobile View](./public/images/view-mobile.png) | ![Mobile New](./public/images/new-mobile.png)     |
 | *mobile view addresses page*                                | *mobile new address page*                                  |
 
 | Desktop — View                                  | Desktop — New                                  |
 |--------------------------------------------------------|--------------------------------------------------------|
-| ![Desktop View](./frontend/public/images/view-desktop.png) | ![Desktop New](./frontend/public/images/new-desktop.png)   |
+| ![Desktop View](./public/images/view-desktop.png) | ![Desktop New](./public/images/new-desktop.png)   |
 | *desktop view addresses page*                     | *desktop new address page*                      |
 
 ## Getting Started

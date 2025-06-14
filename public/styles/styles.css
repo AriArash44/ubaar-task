@@ -69,24 +69,56 @@
   padding-right: 48px;
 }
 
+.pr-80px {
+  padding-right: 80px;
+}
+
 .pl-48px {
   padding-left: 48px;
 }
 
-.mr-10px {
-  margin-right: 10px;
+.pl-80px {
+  padding-left: 80px;
+}
+
+.mt-4px {
+  margin-top: 4px;
+}
+
+.mr-20px {
+  margin-right: 20px;
+}
+
+.mb-4px {
+  margin-bottom: 4px;
+}
+
+.mb-36px {
+  margin-bottom: 36px;
+}
+
+.mb-80px {
+  margin-bottom: 80px;
+}
+
+.ml-5px {
+  margin-left: 5px;
 }
 
 .ml-30px {
   margin-left: 30px;
 }
 
-.t-3px {
-  top: 3px;
+.fs-14px {
+  font-size: 14px;
 }
 
-.l-3px {
-  left: 3px;
+.t-6px {
+  top: 6px;
+}
+
+.l-8px {
+  left: 8px;
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -157,9 +189,6 @@
 .w-100 {
   width: 100%;
 }
-.h-80 {
-  height: 80%;
-}
 .h-85 {
   height: 85%;
 }
@@ -176,30 +205,76 @@ input:focus {
 }
 
 .loader {
+  position: relative;
+  width: 80px;
+  height: 16px;
+}
+
+.dot {
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background-color: #fff;
-  box-shadow: 32px 0 #fff, -32px 0 #fff;
-  position: relative;
-  animation: flash 0.5s ease-out infinite alternate;
+  position: absolute;
+  transform-origin: center;
 }
 
-@keyframes flash {
-  0% {
-    background-color: rgba(255, 255, 255, 0.1333333333);
-    box-shadow: 32px 0 rgba(255, 255, 255, 0.1333333333), -32px 0 #FFF;
+.dot.middle {
+  left: calc(50% - 8px);
+  animation: middlePulse 1s ease-in-out infinite;
+}
+
+.dot.left {
+  left: 0;
+  animation: sidePulse 1s ease-in-out infinite;
+}
+
+.dot.right {
+  right: 0;
+  animation: sidePulse 1s ease-in-out infinite;
+}
+
+@keyframes middlePulse {
+  0%, 100% {
+    transform: scale(0.6);
   }
   50% {
-    background-color: #FFF;
-    box-shadow: 32px 0 rgba(255, 255, 255, 0.1333333333), -32px 0 rgba(255, 255, 255, 0.1333333333);
+    transform: scale(1.4);
   }
-  100% {
-    background-color: rgba(255, 255, 255, 0.1333333333);
-    box-shadow: 32px 0 #FFF, -32px 0 rgba(255, 255, 255, 0.1333333333);
+}
+@keyframes sidePulse {
+  0%, 100% {
+    transform: scale(1.4);
+  }
+  50% {
+    transform: scale(0.6);
   }
 }
 .disabled {
   cursor: not-allowed !important;
   opacity: 0.75;
+}
+
+.min-vh-75 {
+  min-height: 75vh !important;
+}
+
+.footer-shadow {
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type=radio] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  outline: 2px solid #D4D4D4;
+  border: 5px solid white;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+}
+
+input[type=radio]:checked {
+  background-color: #00BFA5;
+  outline-color: #00BFA5;
 }

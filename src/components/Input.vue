@@ -37,10 +37,10 @@
 </script>
 
 <template>
-  <div>
+  <div class="mb-4">
     <div class="d-flex justify-content-between mb-1">
-      <label :for="inputId" class="d-block">{{ title }}</label>
-      <span>{{ leftTitle }}</span>
+      <label :for="inputId" class="d-block fs-14px fw-semibold">{{ title }}</label>
+      <span class="fs-14px text-grey-one">{{ leftTitle }}</span>
     </div>
     <div class="position-relative">
       <input
@@ -48,14 +48,14 @@
         type="text"
         :value="value"
         @input="handleInput"
-        :class="['w-100 p-1 border-solid rounded-1', inputClass]"
+        :class="['w-100 p-2 border-solid rounded-1', inputClass]"
         :placeholder="placeholder"
       />
       <button
         v-if="value"
         type="button"
         @click="value = ''"
-        class="position-absolute t-3px l-3px bg-white border-0"
+        class="position-absolute t-6px l-8px bg-white border-0"
       >
         <img src="/images/close.svg" alt="Clear input" />
       </button>

@@ -4,6 +4,7 @@
     import Card from '../components/Card.vue';
     import Map from '../components/Map.vue';
     import { usePost } from '@/composables/usePost';
+    import { showToast } from '../utils/showToast';
     const step = ref(1);
     const formData = reactive({
         "first-name": "",
@@ -26,7 +27,7 @@
             formData['gender'] !== ''
         );
     };
-    const { responseData, error, loading, postData } = usePost(`${import.meta.env.VITE_BASE_URL}api/karfarmas/address`);
+    const { responseData, error, loading, postData } = usePost(`${import.meta.env.VITE_BASE_URL}karfarmas/address`);
     const sendAddress = async () => {
         await postData({
             "first_name": formData['first-name'],
@@ -39,7 +40,10 @@
             "lng": position.long,
             "gender": formData.gender
         });
-        step.value++;
+        if(error.value)
+            showToast(error.value);
+        else
+            step.value++;
     };
 </script>
 

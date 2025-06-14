@@ -51,10 +51,10 @@
   <h1 v-if="step === 1" class="w-95 w-sm-75 w-md-75 w-lg-70 w-xl-65 text-right fs-5 fw-semibold mb-3">ثبت آدرس</h1>
   <Card v-if="step === 1">
     <form class="p-3 mb-80px">
-      <p class="fs-14px fw-semibold">لطفا مشخصات خود را وارد کنید</p>
+      <p class="fs-14px fw-semibold pe-md-2">لطفا مشخصات خود را وارد کنید</p>
       <div class="d-flex justify-content-around flex-wrap">
         <Input
-          class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32"
+          class="col-12 w-sm-31 w-md-31 w-lg-31 w-xl-31"
           title="نام"
           regex="^.{2,}$"
           error="نام باید شامل 2 کاراکتر باشد"
@@ -62,7 +62,7 @@
           v-model="formData['first-name']"
         />
         <Input
-          class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32"
+          class="col-12 w-sm-31 w-md-31 w-lg-31 w-xl-31"
           title="نام خانوادگی"
           regex="^.{3,}$"
           error="نام خانوادگی باید شامل 3 کاراکتر باشد"
@@ -70,7 +70,7 @@
           v-model="formData['last-name']"
         />
         <Input
-          class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32"
+          class="col-12 w-sm-31 w-md-31 w-lg-31 w-xl-31"
           title="شماره تلفن همراه"
           regex="^09\d{9}$"
           error="شماره وارد شده صحیح نمی‌باشد"
@@ -79,9 +79,9 @@
           v-model="formData['mobile-phone']"
         />
       </div>
-      <div class="d-flex justify-content-around mt-md-4 flex-wrap">
+      <div class="d-flex justify-content-around mt-md-3 flex-wrap">
         <Input
-          class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32"
+          class="col-12 w-sm-31 w-md-31 w-lg-31 w-xl-31"
           title="شماره ثابت (اختیاری)"
           regex="^0\d{10}$"
           error="شماره وارد شده صحیح نمی‌باشد"
@@ -90,15 +90,15 @@
           v-model="formData['tel-phone']"
         />
         <Input
-          class="col-12 w-sm-66 w-md-66 w-lg-66 w-xl-66"
+          class="col-12 w-sm-64 w-md-64 w-lg-64 w-xl-64"
           title="آدرس"
           regex="^.{3,}$"
           error="آدرس باید حداقل 3 کاراکتر باشد"
           v-model="formData['address']"
         />
       </div>
-      <div class="d-flex mt-md-4">
-        <p class="ml-30px mt-1">جنسیت:</p>
+      <div class="d-flex mt-md-3">
+        <p class="ml-50px mt-1 pe-md-3">جنسیت:</p>
         <input id="male" name="gender" type="radio" value="مرد" class="mt-2 ml-5px" v-model="formData.gender" />
         <label for="male" class="mt-1">مرد</label>
         <input id="female" name="gender" type="radio" value="زن" class="mt-2 mr-20px ml-5px" v-model="formData.gender" />

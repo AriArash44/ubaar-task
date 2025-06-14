@@ -39,8 +39,8 @@
 <template>
   <div class="mb-4">
     <div class="d-flex justify-content-between mb-1">
-      <label :for="inputId" class="d-block fs-14px fw-semibold">{{ title }}</label>
-      <span class="fs-14px text-grey-one">{{ leftTitle }}</span>
+      <label :for="inputId" class="d-block fs-14px fw-semibold text-nowrap">{{ title }}</label>
+      <span class="fs-14px text-grey-one text-nowrap">{{ leftTitle }}</span>
     </div>
     <div class="position-relative">
       <input

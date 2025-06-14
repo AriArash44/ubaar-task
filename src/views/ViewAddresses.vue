@@ -49,19 +49,19 @@
           <p class="text-grey-one col-5">شماره تلفن همراه</p>
         </div>
         <div class="d-flex justify-content-between">
-          <p class="col-3">{{ item.first_name }}</p>
-          <p class="col-3">{{ item.last_name }}</p>
-          <p class="col-5">{{ toPersianNumbers(item.coordinate_mobile.replace(/^98/, "0")) }}</p>
+          <p class="col-3 fw-bold">{{ item.first_name }}</p>
+          <p class="col-3 fw-bold">{{ item.last_name }}</p>
+          <p class="col-5 fw-bold">{{ toPersianNumbers(item.coordinate_mobile.replace(/^98/, "0")) }}</p>
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between mt-5">
           <p class="text-grey-one col-3">شماره تلفن ثابت</p>
           <p class="text-grey-one col-3">جنسیت</p>
           <p class="text-grey-one col-5">آدرس</p>
         </div>
         <div class="d-flex justify-content-between">
-          <p class="col-3">{{ toPersianNumbers(item.coordinate_phone_number.replace(/^98/, "0")) }}</p>
-          <p class="col-3">{{ item.gender }}</p>
-          <p class="col-5">{{ toPersianNumbers(item.address) }}</p>
+          <p class="col-3 fw-bold">{{ toPersianNumbers(item.coordinate_phone_number.replace(/^98/, "0")) }}</p>
+          <p class="col-3 fw-bold">{{ item.gender }}</p>
+          <p class="col-5 fw-bold">{{ toPersianNumbers(item.address) }}</p>
         </div>
       </div>
     </Card>

@@ -11,19 +11,23 @@
         "mobile-phone": "",
         "tel-phone": "",
         "address": "",
-        "gender": "",
+        "gender": ""
     });
     const position = reactive({
         "lat": null,
         "long": null
     });
-    const isValidInputs = reactive([false, false, false, false, false]);
     const isValid = () => {
-        console.log(isValidInputs);
-        return isValidInputs.reduce((res, current) => res && current, true) && formData["gender"]; 
-    }
+        return (
+            formData['first-name'].length >= 2 &&
+            formData['last-name'].length >= 3 &&
+            /^09\d{9}$/.test(formData['mobile-phone']) &&
+            formData['address'].length >= 3 &&
+            formData['gender'] !== ''
+        );
+    };
     const { responseData, error, loading, postData } = usePost(`${import.meta.env.VITE_BASE_URL}api/karfarmas/address`);
-    const sendAddress = async() => {
+    const sendAddress = async () => {
         await postData({
             "first_name": formData['first-name'],
             "last_name": formData['last-name'],
@@ -40,50 +44,81 @@
 </script>
 
 <template>
-  <Card v-if="step===1" title="ثبت آدرس">
+  <p v-if="step === 1" class="w-95 w-sm-75 w-md-75 w-lg-70 w-xl-65 text-right">ثبت آدرس</p>
+  <Card v-if="step === 1">
     <form class="p-4">
       <div class="d-flex justify-content-around flex-wrap">
-        <Input class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32" title="نام" type="text" regex="^.{2,}$" error="نام باید شامل 2 کاراکتر باشد"
-        @update:data="$event => (formData['first-name'] = $event)" placeholder="مثال: محمدرضا" v-model="isValidInputs[0]"/>
-        <Input class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32" title="نام خانوادگی" type="text" regex="^.{3,}$" error="نام خانوادگی باید شامل 3 کاراکتر باشد"
-        @update:data="$event => (formData['last-name'] = $event)" placeholder="مثال: رضایی" v-model="isValidInputs[1]"/>
-        <Input class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32" title="شماره تلفن همراه" type="text" regex="^09\d{9}$" error="شماره وارد شده صحیح نمی‌باشد"
-        :onlyNumeric="true" @update:data="$event => (formData['mobile-phone'] = $event)" placeholder="مثال: 09121234567" v-model="isValidInputs[2]"/>
+        <Input
+          class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32"
+          title="نام"
+          regex="^.{2,}$"
+          error="نام باید شامل 2 کاراکتر باشد"
+          placeholder="مثال: محمدرضا"
+          v-model="formData['first-name']"
+        />
+        <Input
+          class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32"
+          title="نام خانوادگی"
+          regex="^.{3,}$"
+          error="نام خانوادگی باید شامل 3 کاراکتر باشد"
+          placeholder="مثال: رضایی"
+          v-model="formData['last-name']"
+        />
+        <Input
+          class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32"
+          title="شماره تلفن همراه"
+          regex="^09\d{9}$"
+          error="شماره وارد شده صحیح نمی‌باشد"
+          placeholder="مثال: 09121234567"
+          :onlyNumeric="true"
+          v-model="formData['mobile-phone']"
+        />
       </div>
       <div class="d-flex justify-content-around mt-4 flex-wrap">
-        <Input class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32" title="شماره ثابت (اختیاری)" type="text" regex="^0\d{10}$" error="شماره وارد شده صحیح نمی‌باشد"
-        @update:data="$event => (formData['tel-phone'] = $event)" placeholder="مثال: 02144256780" leftTitle="*با پیش شماره" v-model="isValidInputs[3]"/>
-        <Input class="col-12 w-sm-66 w-md-66 w-lg-66 w-xl-66" title="آدرس" type="text" regex="^.{3,}$" error="آدرس باید حداقل 3 کاراکتر باشد"
-        @update:data="$event => (formData['address'] = $event)" v-model="isValidInputs[4]"/>
+        <Input
+          class="col-12 w-sm-32 w-md-32 w-lg-32 w-xl-32"
+          title="شماره ثابت (اختیاری)"
+          regex="^0\d{10}$"
+          error="شماره وارد شده صحیح نمی‌باشد"
+          placeholder="مثال: 02144256780"
+          leftTitle="*با پیش شماره"
+          v-model="formData['tel-phone']"
+        />
+        <Input
+          class="col-12 w-sm-66 w-md-66 w-lg-66 w-xl-66"
+          title="آدرس"
+          regex="^.{3,}$"
+          error="آدرس باید حداقل 3 کاراکتر باشد"
+          v-model="formData['address']"
+        />
       </div>
       <div class="d-flex mt-4">
         <p class="ml-30px mt-1">جنسیت:</p>
-        <input id="male" name="gender" type="radio" value="مرد" class="m-1" v-model="formData['gender']"/>
+        <input id="male" name="gender" type="radio" value="مرد" class="m-1" v-model="formData.gender" />
         <label for="male" class="mt-1">مرد</label>
-        <input id="female" name="gender" type="radio" value="زن" class="m-1 mr-10px" v-model="formData['gender']"/>
+        <input id="female" name="gender" type="radio" value="زن" class="m-1 mr-10px" v-model="formData.gender" />
         <label for="female" class="mt-1">زن</label>
       </div>
       <Teleport to="body">
-        <div class="position-absolute bottom-0 bg-white w-100
-        d-flex justify-content-center p-3">
-          <button @click.prevent="isValid() && step++" class="bg-primary-green border-0 pr-48px pl-48px py-1
-          cursor-pointer text-white rounded" type="sumbit">ثبت و ادامه</button>
+        <div class="position-absolute bottom-0 bg-white w-100 d-flex justify-content-center p-3">
+          <button @click.prevent="isValid() && step++" type="submit"
+          :class="['bg-primary-green border-0 pr-48px pl-48px py-1 text-white rounded-2', isValid() ? 'cursor-pointer' : 'disabled']">
+            ثبت و ادامه
+          </button>
         </div>
       </Teleport>
     </form>
   </Card>
-  <div v-if="step === 2" class="d-flex justify-content-start" @click="step--">
+  <div v-if="step === 2" class="d-flex justify-content-startw-95 w-sm-75 w-md-75 w-lg-70 w-xl-65 text-right" @click="step--">
     <button class="bg-transparent border-0">&#x2192;</button>
     <p>انتخاب آدرس</p>
   </div>
   <Card v-if="step === 2">
-    <p class="position-absolu"></p>
     <Map v-model="position" />
     <Teleport to="body">
-      <div class="position-absolute bottom-0 bg-white w-100
-      d-flex justify-content-center p-3">
-        <button @click.prevent="sendAddress()" class="bg-primary-green border-0 pr-48px pl-48px py-1
-        cursor-pointer text-white rounded" type="sumbit">
+      <div class="position-absolute bottom-0 bg-white w-100 d-flex justify-content-center p-3">
+        <button @click.prevent="sendAddress()" class="bg-primary-green border-0 pr-48px pl-48px py-1 cursor-pointer
+        text-white rounded" type="submit">
           <div v-if="loading" class="loader"></div>
           <span v-else>ثبت و ادامه</span>
         </button>
@@ -92,18 +127,17 @@
   </Card>
   <Card v-if="step === 3">
     <Teleport to="body">
-      <div class="position-absolute bottom-0 bg-white w-100
-      d-flex justify-content-center p-3">
-        <button @click.prevent="sendAddress()" class="bg-primary-green border-0 pr-48px pl-48px py-1
-        cursor-pointer text-white rounded" type="sumbit">
+      <div class="position-absolute bottom-0 bg-white w-100 d-flex justify-content-center p-3">
+        <button @click.prevent="sendAddress()" class="bg-primary-green border-0 pr-48px pl-48px py-1 cursor-pointer 
+        text-white rounded" type="submit">
           <div v-if="loading" class="loader"></div>
           <span v-else>ثبت و ادامه</span>
         </button>
       </div>
     </Teleport>
   </Card>
-  <div v-if="step===3" class="w-100 h-85 d-flex flex-column justify-content-center align-items-center">
-    <img src="/images/success.svg" alt="success"/>
+  <div v-if="step === 3" class="w-100 h-85 d-flex flex-column justify-content-center align-items-center">
+    <img src="/images/success.svg" alt="success" />
     <p>اطلاعات شما با موفقیت ثبت شد</p>
     <router-link to="/view-addresses">
       <button class="border-primary-green w-100 text-center text-primary-green p-8px pr-48px pl-48px rounded-2">

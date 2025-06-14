@@ -199,3 +199,7 @@ input:focus {
     box-shadow: 32px 0 #FFF, -32px 0 rgba(255, 255, 255, 0.1333333333);
   }
 }
+.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.75;
+}
